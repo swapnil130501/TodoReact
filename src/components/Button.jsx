@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 function Button({text, onClickHandler, type}) {
     return (
@@ -11,4 +11,4 @@ function Button({text, onClickHandler, type}) {
     )
 }
 
-export default Button
+export default memo(Button)

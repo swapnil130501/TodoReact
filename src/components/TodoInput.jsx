@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { memo, useState } from 'react'
 import Button from './Button';
 
 function TodoInput({ onSubmit }) {
@@ -31,4 +31,4 @@ function TodoInput({ onSubmit }) {
       );
 }
 
-export default TodoInput
+export default memo(TodoInput)

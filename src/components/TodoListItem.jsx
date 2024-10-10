@@ -1,17 +1,22 @@
-import React, { memo } from 'react'
+import React, { memo, useCallback } from 'react'
 import Button from './Button';
 
 function TodoListItem( {todo, onDelete} ) {
-  return (
+
+    const onClickHandler = useCallback(() => {
+        onDelete(todo.value);
+    }, [todo]); 
+
+    return (
         <li>
             {todo.value}
             <Button
                 text = "X"
-                onClickHandler={() => onDelete(todo.value)}
+                onClickHandler={onClickHandler}
             >
             </Button>
         </li>
-  )
+    )
 }
 
 export default memo(TodoListItem);

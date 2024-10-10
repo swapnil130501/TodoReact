@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import './App.css'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList';
@@ -6,17 +6,17 @@ import TodoList from './components/TodoList';
 function App() {
     const [todos, setTodos] = useState([ ]);
 
-    function deleteTodoById(value) {
+    const deleteTodoById = useCallback((value) => {
         const newTodos = todos.filter(todo => todo.value !== value);
         console.log(newTodos);
         setTodos(newTodos);
-    }
+    }, [todos]);
 
-    function onTodoFormSubmit(value) {
-        if(value) {
-        setTodos([...todos, {value}]);
-        }   
-    }
+    const onTodoFormSubmit = useCallback((value) => {
+        if (value) {
+            setTodos([...todos, { value }]);
+        }
+    }, [todos]);
 
     return (
         <>
