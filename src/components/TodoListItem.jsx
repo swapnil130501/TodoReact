@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Button from './Button';
 
 function TodoListItem( {todo, onDelete} ) {
@@ -14,4 +14,4 @@ function TodoListItem( {todo, onDelete} ) {
   )
 }
 
-export default TodoListItem;
+export default memo(TodoListItem);
