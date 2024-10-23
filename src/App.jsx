@@ -18,10 +18,21 @@ function App() {
         }
     }, [todos]);
 
+    const updateTodo = useCallback((oldValue, newValue) => {
+        const newTodos = todos.map(todo => {
+            if (todo.value === oldValue) {
+                return { value: newValue };
+            }
+
+            return todo;
+        });
+        setTodos(newTodos);
+    }, [todos]);
+
     return (
         <>
             <TodoInput onSubmit={onTodoFormSubmit}></TodoInput>
-            <TodoList listOfTodos={todos} onDeleteTodo={deleteTodoById}></TodoList>
+            <TodoList listOfTodos={todos} onDeleteTodo={deleteTodoById} onUpdateTodo={updateTodo}></TodoList>
         </>
     )
 }

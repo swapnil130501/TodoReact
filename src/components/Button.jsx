@@ -5,7 +5,7 @@ function Button({text, onClickHandler, type}) {
         <button 
             onClick={onClickHandler} 
             type={type}>
-
+                
             {text}
         </button>
     )
