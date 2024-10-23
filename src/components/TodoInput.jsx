@@ -1,34 +1,27 @@
-import React, { memo, useState } from 'react'
+import React, { useState, useContext } from 'react';
 import Button from './Button';
+import TodoContext from '../context/TodoContext';
 
-function TodoInput({ onSubmit }) {
+function TodoInput() {
     const [inputValue, setInputValue] = useState('');
+    const { todos, setTodos } = useContext(TodoContext);
 
-    function handleInputChange(event) {
-        setInputValue(event.target.value)
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        onSubmit?.(inputValue);
+    function handleSubmit() {
+        setTodos([...todos, { value: inputValue }]);
         setInputValue('');
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <div>
             <input
                 type="text"
                 value={inputValue}
-                onChange={handleInputChange}
-                placeholder="Add a new todo"
+                onChange={(e) => setInputValue(e.target.value)}
+                placeholder="Add a todo"
             />
-            <Button
-                type="submit"
-                text="add"
-            >
-            </Button>
-        </form>
-      );
+            <Button text="Add" onClickHandler={handleSubmit} type="submit" />
+        </div>
+    );
 }
 
-export default memo(TodoInput)
+export default React.memo(TodoInput);

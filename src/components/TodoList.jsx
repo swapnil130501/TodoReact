@@ -2,7 +2,6 @@ import React from 'react';
 import TodoListItem from './TodoListItem';
 
 const TodoList = ({ listOfTodos, onDeleteTodo, onUpdateTodo}) => {
-
     return (
         <ul>
             {listOfTodos?.map((todo) => {
