@@ -6,7 +6,7 @@ const TodoList = () => {
     const { todos } = useContext(TodoContext);
 
     return (
-        <ul>
+        <ul className="w-full max-w-md">
             {todos?.map((todo) => (
                 <TodoListItem 
                     key={todo.value} 

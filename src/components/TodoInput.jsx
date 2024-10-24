@@ -4,21 +4,21 @@ import TodoContext from '../context/TodoContext';
 
 function TodoInput() {
     const [inputValue, setInputValue] = useState('');
-    const { todos, setTodos } = useContext(TodoContext);
+    const { dispatch } = useContext(TodoContext);
 
     function handleSubmit() {
-        setTodos([...todos, { value: inputValue }]);
+        dispatch({ type: 'ADD_TODO', payload: inputValue });
         setInputValue('');
     }
 
     return (
-        <div>
+        <div className="flex items-center space-x-4 mb-6">
             <input
                 type="text"
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Add a todo"
-                className="border border-gray-300 p-2 rounded-md w-full max-w-md m-2"
+                className="border border-gray-300 p-2 rounded-md w-full max-w-md"
             />
             <Button text="Add" onClickHandler={handleSubmit} type="submit" />
         </div>

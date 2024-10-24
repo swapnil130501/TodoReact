@@ -3,25 +3,18 @@ import Button from './Button';
 import TodoContext from '../context/TodoContext';
 
 function TodoListItem({ todo }) {
-    const { todos, setTodos } = useContext(TodoContext);
+    const { dispatch } = useContext(TodoContext);
     const [isEditing, setIsEditing] = useState(false);
     const [newTodoValue, setNewTodoValue] = useState(todo.value);
 
     const onClickDeleteHandler = useCallback(() => {
-        const newTodos = todos.filter(t => t.value !== todo.value);
-        setTodos(newTodos);
-    }, [todos, setTodos, todo.value]);
+        dispatch({ type: 'DELETE_TODO', payload: todo.value });
+    }, [dispatch, todo.value]);
 
     const onClickUpdateHandler = useCallback(() => {
-        const newTodos = todos.map(t => {
-            if (t.value === todo.value) {
-                return { value: newTodoValue };
-            }
-            return t;
-        });
-        setTodos(newTodos);
+        dispatch({ type: 'UPDATE_TODO', payload: { oldValue: todo.value, newValue: newTodoValue } });
         setIsEditing(false);
-    }, [todos, setTodos, todo.value, newTodoValue]);
+    }, [dispatch, todo.value, newTodoValue]);
 
     const handleEditClick = () => {
         setIsEditing(true);
@@ -32,24 +25,24 @@ function TodoListItem({ todo }) {
     };
 
     return (
-        <li>
+        <li className="flex justify-between items-center p-4 bg-white shadow-md rounded-md mb-3">
             {isEditing ? (
                 <>
                     <input
                         type="text"
                         value={newTodoValue}
                         onChange={handleChange}
-                        className="border border-gray-300 p-2 rounded-md w-full max-w-md"
+                        className="border p-2 rounded-md"
                     />
-                    <Button text="Update" onClickHandler={onClickUpdateHandler} className='m-2'/>
+                    <Button text="Update" onClickHandler={onClickUpdateHandler} />
                 </>
             ) : (
                 <>
-                    {todo.value}
-                    <Button text="Edit" onClickHandler={handleEditClick} className='m-2' />
+                    <span className="text-lg">{todo.value}</span>
+                    <Button text="Edit" onClickHandler={handleEditClick} />
                 </>
             )}
-            <Button text="Delete" onClickHandler={onClickDeleteHandler} className='m-2'/>
+            <Button text="Delete" onClickHandler={onClickDeleteHandler} />
         </li>
     );
 }
