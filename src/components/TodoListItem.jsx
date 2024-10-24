@@ -39,16 +39,17 @@ function TodoListItem({ todo }) {
                         type="text"
                         value={newTodoValue}
                         onChange={handleChange}
+                        className="border border-gray-300 p-2 rounded-md w-full max-w-md"
                     />
-                    <Button text="Update" onClickHandler={onClickUpdateHandler} />
+                    <Button text="Update" onClickHandler={onClickUpdateHandler} className='m-2'/>
                 </>
             ) : (
                 <>
                     {todo.value}
-                    <Button text="Edit" onClickHandler={handleEditClick} />
+                    <Button text="Edit" onClickHandler={handleEditClick} className='m-2' />
                 </>
             )}
-            <Button text="Delete" onClickHandler={onClickDeleteHandler} />
+            <Button text="Delete" onClickHandler={onClickDeleteHandler} className='m-2'/>
         </li>
     );
 }

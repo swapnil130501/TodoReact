@@ -18,6 +18,7 @@ function TodoInput() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Add a todo"
+                className="border border-gray-300 p-2 rounded-md w-full max-w-md m-2"
             />
             <Button text="Add" onClickHandler={handleSubmit} type="submit" />
         </div>
