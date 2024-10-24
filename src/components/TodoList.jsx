@@ -1,16 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import TodoListItem from './TodoListItem';
+import TodoContext from '../context/TodoContext';
 
-const TodoList = ({ listOfTodos, onDeleteTodo, onUpdateTodo}) => {
+const TodoList = () => {
+    const { todos } = useContext(TodoContext);
+
     return (
         <ul>
-            {listOfTodos?.map((todo) => {
-                return <TodoListItem 
+            {todos?.map((todo) => (
+                <TodoListItem 
                     key={todo.value} 
                     todo={todo} 
-                    onDelete={onDeleteTodo} 
-                    onUpdate={onUpdateTodo}/>
-                })}
+                />
+            ))}
         </ul>
     );
 };
