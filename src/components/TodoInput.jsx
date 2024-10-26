@@ -12,7 +12,7 @@ function TodoInput() {
     }
 
     return (
-        <div className="flex items-center space-x-4 mb-6">
+        <div className="flex justify-center mb-6">
             <input
                 type="text"
                 value={inputValue}

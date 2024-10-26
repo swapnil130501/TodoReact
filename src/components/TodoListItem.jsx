@@ -25,25 +25,29 @@ function TodoListItem({ todo }) {
     };
 
     return (
-        <li className="flex justify-between items-center p-4 bg-white shadow-md rounded-md mb-3">
+        <li className="flex items-center justify-between p-4 bg-white shadow-md rounded-md mb-3">
             {isEditing ? (
-                <>
+                <div className="flex-grow flex items-center">
                     <input
                         type="text"
                         value={newTodoValue}
                         onChange={handleChange}
-                        className="border p-2 rounded-md"
+                        className="border p-2 rounded-md flex-grow"
                     />
-                    <Button text="Update" onClickHandler={onClickUpdateHandler} />
-                </>
+                </div>
             ) : (
-                <>
-                    <span className="text-lg">{todo.value}</span>
-                    <Button text="Edit" onClickHandler={handleEditClick} />
-                </>
+                <span className="text-lg flex-grow">{todo.value}</span>
             )}
-            <Button text="Delete" onClickHandler={onClickDeleteHandler} />
+            <div className="flex space-x-2">
+                {isEditing ? (
+                    <Button text="Update" onClickHandler={onClickUpdateHandler} />
+                ) : (
+                    <Button text="Edit" onClickHandler={handleEditClick} />
+                )}
+                <Button text="Delete" onClickHandler={onClickDeleteHandler} />
+            </div>
         </li>
+
     );
 }
 
