@@ -7,11 +7,11 @@ function TodoListItem({ todo }) {
     const { dispatch } = useContext(TodoContext);
     const [isEditing, setIsEditing] = useState(false);
     const [newTodoValue, setNewTodoValue] = useState(todo.value);
-    const [confirmDelete, ConfirmModal] = useConfirm();
+    const [confirm, ConfirmModal] = useConfirm();
 
     const onClickDeleteHandler = useCallback(() => {
-        confirmDelete(() => dispatch({ type: 'DELETE_TODO', payload: todo.value }));
-    }, [confirmDelete, dispatch, todo.value]);
+        confirm(() => dispatch({ type: 'DELETE_TODO', payload: todo.value }));
+    }, [confirm, dispatch, todo.value]);
 
     const onClickUpdateHandler = useCallback(() => {
         dispatch({ type: 'UPDATE_TODO', payload: { oldValue: todo.value, newValue: newTodoValue } });

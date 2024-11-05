@@ -1,24 +1,23 @@
-import { useState, useCallback } from 'react';
+import { useState } from 'react';
 import CustomModal from '../components/CustomModal';
 
 function useConfirm() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [onConfirmAction, setOnConfirmAction] = useState(null);
 
-    // Trigger the modal and set the callback to the desired action
-    const confirm = useCallback((action) => {
+    function confirm(action) {
         setIsModalOpen(true);
-        setOnConfirmAction(() => action);
-    }, []);
+        setOnConfirmAction(() => action); 
+    }
 
-    const handleConfirm = useCallback(() => {
+    function handleConfirm() {
         if (onConfirmAction) onConfirmAction();
         setIsModalOpen(false);
-    }, [onConfirmAction]);
+    }
 
-    const handleClose = useCallback(() => {
+    function handleClose() {
         setIsModalOpen(false);
-    }, []);
+    }
 
     const ConfirmModal = isModalOpen ? (
         <CustomModal isOpen={isModalOpen} onConfirm={handleConfirm} onClose={handleClose} />
